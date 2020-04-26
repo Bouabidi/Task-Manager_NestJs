@@ -10,7 +10,7 @@ import { TaskStatus } from './task-status.enum';
 export class TasksService {
     constructor(@InjectRepository(TaskRepository) private taskRepository: TaskRepository) { }
 
-    getTasks(filterDto: GetTasksFilterDto): Promise<Task[]>{
+    getTasks(filterDto: GetTasksFilterDto): Promise<Task[]> {
         return this.taskRepository.getTasks(filterDto);
     }
 
@@ -37,32 +37,4 @@ export class TasksService {
         await task.save();
         return task;
     }
-    /*
-    getTaskById(id: string): Task {
-        const found = this.tasks.find(task => task.id === id);
-        if (!found) {
-            throw new NotFoundException();
-
-        }
-        return found;
-    }
-    deleteTask(id: string): void {
-        this.tasks = this.tasks.filter(task => task.id !== id);
-    }
-    createTask(createTaskDto: CreateTaskDto): Task {
-        const { title, description } = createTaskDto;
-        const task: Task = {
-            id: uuid(),
-            title,
-            description,
-            status: TaskStatus.OPEN,
-        };
-        this.tasks.push(task);
-        return task;
-    }
-    updateTaskStatus(id: string, status: TaskStatus): Task {
-        const task = this.getTaskById(id);
-        task.status = status;
-        return task;
-    } */
 }
